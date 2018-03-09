@@ -10,6 +10,15 @@ namespace BinarySearchTree
     {
         static void Main(string[] args)
         {
+            CustomBinarySearch searchTree = new CustomBinarySearch();
+            searchTree.Add(50);
+            for (int index = 1; index <= 50; index++)
+            {
+                searchTree.Add(50 + index);
+                searchTree.Add(50 -index);
+            }
+            searchTree.Search(88);
+            Console.ReadLine();
         }
     }
 }
