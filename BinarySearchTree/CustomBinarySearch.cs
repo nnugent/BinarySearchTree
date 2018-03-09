@@ -20,40 +20,61 @@ namespace BinarySearchTree
             }
             Node currentNode = head;
             while (currentNode != null)
-            { 
-                if (currentNode.Data > newNode.Data)
+            {
+                if (currentNode.Data == newNode.Data) break;
+                else if (currentNode.Data > newNode.Data)
                 {
+                    if (currentNode.left == null)
+                    {
+                        currentNode.left = newNode;
+                        break;
+                    }
                     currentNode = currentNode.left;
                 }
                 else if (currentNode.Data < newNode.Data)
                 {
+                    if (currentNode.right == null)
+                    {
+                        currentNode.right = newNode;
+                        break;
+                    }
                     currentNode = currentNode.right;
                 }
             }
-            currentNode  = newNode;
         }
 
         public bool Search(int value)
         {
+            bool found = false;
+            string directions = "";
             Node currentNode = head;
             while (currentNode != null)
             {
                 if (currentNode.Data == value)
                 {
-                    return true;
+                    found = true;
+                    break;
                 }
-                else if (currentNode.Data < head.Data)
+                else if (currentNode.Data > value)
                 {
+                    directions += currentNode.Data + " Left\n";
                     currentNode = currentNode.left;
-                    Console.WriteLine(currentNode.left + "Left");
                 }
-                else
+                else if (currentNode.Data < value)
                 {
+                    directions += currentNode.Data + " Right\n";
                     currentNode = currentNode.right;
-                    Console.WriteLine(currentNode.Data + "Right");
                 }
             }
-            return false;
+            if (found)
+            {
+                Console.WriteLine("We found " + value + "!!!\n" + directions);
+            }
+            else
+            {
+                Console.WriteLine("No luck bud.\n" + directions);
+            }
+            return found;
         }
     }
 }
